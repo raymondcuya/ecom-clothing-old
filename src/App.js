@@ -20,14 +20,15 @@ class App extends React.Component {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
 
-        userRef.onSnapshot((snapshot) => {
+        userRef.onSnapshot((snapShot) => {
           setCurrentUser({
-            id: snapshot.id,
-            ...snapshot.data(),
+            id: snapShot.id,
+            ...snapShot.data(),
           });
         });
       }
-      setCurrentUser({ userAuth });
+
+      setCurrentUser(userAuth);
     });
   }
 
@@ -37,7 +38,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div>
         <Header />
         <Switch>
           <Route exact path="/" component={HomePage} />
